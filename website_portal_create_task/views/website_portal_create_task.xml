@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_frontend" inherit_id="website.assets_frontend" name="Survey assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/website_portal_create_task/static/src/js/portal_create_task.js"/>
+        </xpath>
+    </template>
+
+    <template id="portal_my_tasks" inherit_id="project.portal_my_tasks">
+        <xpath expr="//t[@t-set='title']" position="after">
+            <div class="form-inline ml-lg-4">
+                <button class="btn btn-success btn-sm" name='new_opp' data-toggle="modal"
+                        data-target=".modal_new_task" title="Add an opportunity" aria-label="Add an opportunity">
+                    <i class="fa fa-plus"/>
+                    Create New
+                </button>
+            </div>
+
+            <div class="modal fade modal_new_task" role="form">
+                <div class="modal-dialog">
+                    <form method="POST" class="modal-content js_website_submit_form new_task_form">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <header class="modal-header">
+                            <h4 class="modal-title">New Task</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&amp;times;
+                            </button>
+                        </header>
+                        <main class="modal-body" id="new-opp-dialog">
+                            <div class="form-group">
+                                <label class="col-form-label hdd4" for="project">Project</label>
+                                <select class="form-control project" name="project">
+                                    <t t-foreach="searchbar_filters" t-as="project">
+                                        <t t-if="project != 'all'"> <!-- exclude all from filters -->
+                                            <option t-att-value="project">
+                                                <t t-esc="searchbar_filters[project].get('label')"/>
+                                            </option>
+                                        </t>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label h4dd" for="title">Title</label>
+                                <input type='text' name="title" class="form-control title"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label hdd4" for="description">Description</label>
+                                <textarea rows="3" name="description" class="form-control description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label hdd4" for="deadline">Deadline</label>
+                                <input type="date" name="deadline" class="form-control deadline"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label hdd4" for="added_file">File upload</label>
+                                <input type="file" multiple="true" name="added_file" class="form-control added_file"/>
+                            </div>
+                        </main>
+                        <footer class="modal-footer">
+                            <button t-attf-class="btn btn-primary new_task_confirm">Confirm</button>
+                            or
+                            <button type="button" class="btn btn-link" data-dismiss="modal" style="padding: 0">Cancel
+                            </button>
+                        </footer>
+                    </form>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>
