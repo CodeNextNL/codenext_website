@@ -1,0 +1,64 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* website_portal_create_task
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-16 13:46+0000\n"
+"PO-Revision-Date: 2020-05-16 13:46+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_portal_create_task
+#: model_terms:ir.ui.view,arch_db:website_portal_create_task.portal_my_tasks
+msgid "<i class=\"fa fa-plus\"/>\n"
+"                        New Task"
+msgstr "<i class=\"fa fa-plus\"/>\n"
+"                        Nieuwe Taak"
+
+#. module: website_portal_create_task
+#: model_terms:ir.ui.view,arch_db:website_portal_create_task.portal_layout
+msgid "<span>New Task</span>"
+msgstr "<span>Nieuwe Taak</span>"
+
+#. module: website_portal_create_task
+#: model_terms:ir.ui.view,arch_db:website_portal_create_task.portal_create_task
+msgid "Add Attachments"
+msgstr "Bijlagen toevoegen"
+
+#. module: website_portal_create_task
+#: model_terms:ir.ui.view,arch_db:website_portal_create_task.portal_create_task
+msgid "Deadline"
+msgstr "Deadline"
+
+#. module: website_portal_create_task
+#: model_terms:ir.ui.view,arch_db:website_portal_create_task.portal_create_task
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: website_portal_create_task
+#: model_terms:ir.ui.view,arch_db:website_portal_create_task.portal_create_task
+msgid "Project"
+msgstr ""
+
+#. module: website_portal_create_task
+#: model_terms:ir.ui.view,arch_db:website_portal_create_task.portal_create_task
+msgid "Submit Task"
+msgstr "Taak aanmaken"
+
+#. module: website_portal_create_task
+#: model_terms:ir.ui.view,arch_db:website_portal_create_task.portal_layout
+msgid "Tasks"
+msgstr "Taken"
+
+#. module: website_portal_create_task
+#: model_terms:ir.ui.view,arch_db:website_portal_create_task.portal_create_task
+msgid "Title"
+msgstr "Titel"
+
