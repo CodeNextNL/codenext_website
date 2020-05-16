@@ -8,9 +8,12 @@
     'installable': True,
     'license': 'LGPL-3',
     "depends": [
+        'website',
+        'website_js_below_the_fold',
         'project',
     ],
     'data': [
+        'views/website_layout.xml',
         'views/website_portal_create_task.xml',
     ]
 }
