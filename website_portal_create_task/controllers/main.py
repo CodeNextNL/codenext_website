@@ -53,7 +53,7 @@ class PortalCreateTaskController(CustomerPortal):
                     request.env['ir.attachment'].sudo().create({
                         'name': c_file.filename,
                         'datas': base64.b64encode(data),
-                        'datas_fname': c_file.filename,
+                        # 'datas_fname': c_file.filename,
                         'res_model': 'project.task',
                         'res_id': new_task.id
                     })

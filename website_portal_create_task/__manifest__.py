@@ -4,13 +4,12 @@
     'summary': 'Add possibility to create task from portal as customer',
     'author': "codeNext",
     'website': "http:/www.codenext.nl",
-    'version': '12.0.0.1',
+    'version': '13.0.1.0.0',
     'installable': True,
     'license': 'LGPL-3',
     "depends": [
-        'website',
-        'website_js_below_the_fold',
         'project',
+        'website_profile',
     ],
     'data': [
         'views/website_layout.xml',

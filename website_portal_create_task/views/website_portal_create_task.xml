@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="assets_frontend" inherit_id="website.assets_frontend" name="Website Portal Create Task assets">
-        <xpath expr="script[last()]" position="after">
-            <script type="text/javascript" src="/website_portal_create_task/static/src/js/website_editor.js"/>
-        </xpath>
-    </template>
-
     <template id="portal_layout" name="Portal layout: create task menu entry" inherit_id="project.portal_layout" priority="40">
         <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
             <li t-if="page_name == 'new_task' or new_task" class="breadcrumb-item">
@@ -21,7 +15,7 @@
     <template id="portal_my_tasks" inherit_id="project.portal_my_tasks">
         <xpath expr="//t[@t-set='title']" position="after">
             <div class="form-inline ml-lg-4">
-                <form method="POST" t-attf-action="/new/task">
+                <form class="form-inline" method="POST" t-attf-action="/new/task">
                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                     <button name="create_new_task" type="action" class="btn btn-primary btn-sm">
                         <i class="fa fa-plus"/>
@@ -34,7 +28,7 @@
 
     <template id="portal_create_task" name="Create Task">
         <t t-call="portal.portal_layout">
-            <form action="/submitted/task" method="POST" class="form-horizontal mt32 website-portal-create-task" enctype="multipart/form-data">
+            <form action="/submitted/task" method="POST" class="form-horizontal mt32 website-portal-create-task o_wprofile_editor_form" enctype="multipart/form-data">
                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
 
                 <div class="form-group">
@@ -60,7 +54,7 @@
                 <div class="form-group">
                     <label class="col-md-3 col-sm-4 control-label" for="description">Description</label>
                     <div class="col-md-7 col-sm-8">
-                        <textarea name="description" class="form-control load_editor" style="min-height: 120px"></textarea>
+                        <textarea name="description" class="form-control load_editor o_wysiwyg_loader" style="min-height: 120px"></textarea>
                     </div>
                 </div>
 
