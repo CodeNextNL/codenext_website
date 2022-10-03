@@ -1,38 +1,47 @@
 odoo.define("website_portal_create_task.website_editor", function (require) {
   "use strict";
 
-  require("web.dom_ready");
+  var publicWidget = require("web.public.widget");
+  var wysiwygLoader = require("web_editor.loader");
 
-  $("textarea.load_editor").each(function () {
-    var $textarea = $(this);
-    var editor_karma = $textarea.data("karma") || 0; // default value for backward compatibility
-    if (!$textarea.val().match(/\S/)) {
-      $textarea.val("<p><br/></p>");
-    }
-    var $form = $textarea.closest("form");
-    var toolbar = [
-      ["style", ["style"]],
-      ["font", ["bold", "italic", "underline", "clear"]],
-      ["para", ["ul", "ol", "paragraph"]],
-      ["table", ["table"]],
-      ["history", ["undo", "redo"]],
-    ];
-    if (parseInt($("#karma").val()) >= editor_karma) {
-      toolbar.push(["insert", ["link", "picture"]]);
-    }
-    $textarea.summernote({
-      height: 150,
-      toolbar: toolbar,
-      styleWithSpan: false,
-    });
+  publicWidget.registry.websiteProfileEditor = publicWidget.Widget.extend({
+    selector: ".o_wprofile_editor_form",
 
-    // float-left class messes up the post layout OPW 769721
-    $form
-      .find(".note-editable")
-      .find("img.float-left")
-      .removeClass("float-left");
-    $form.on("click", "button, .a-submit", function () {
-      $textarea.html($form.find(".note-editable").code());
-    });
+    /**
+     * @override
+     */
+    start: function () {
+      var def = this._super.apply(this, arguments);
+      if (this.editableMode) {
+        return def;
+      }
+
+      // Warning: Do not activate any option that adds inline style.
+      // Because the style is deleted after save.
+      var toolbar = [
+        ["style", ["style"]],
+        ["font", ["bold", "italic", "underline", "clear"]],
+        ["para", ["ul", "ol", "paragraph"]],
+        ["table", ["table"]],
+        ["history", ["undo", "redo"]],
+      ];
+
+      var $textarea = this.$("textarea.o_wysiwyg_loader");
+      var loadProm = wysiwygLoader
+        .load(this, $textarea[0], {
+          toolbar: toolbar,
+          recordInfo: {
+            context: this._getContext(),
+            res_model: "res.users",
+            res_id: parseInt(this.$("input[name=user_id]").val()),
+          },
+          disableResizeImage: true,
+        })
+        .then((wysiwyg) => {
+          this._wysiwyg = wysiwyg;
+        });
+
+      return Promise.all([def, loadProm]);
+    },
   });
 });
